@@ -179,3 +179,70 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
 }
+
+/* Refined clean B2B catalog theme */
+:root {
+  --navy: #123b35;
+  --navy-deep: #0b2b27;
+  --blue: #167d68;
+  --blue-pale: #e4f4ef;
+  --ink: #182a27;
+  --muted: #657873;
+  --line: #dce8e4;
+  --surface: #f3f8f6;
+  --white: #ffffff;
+  --radius: 18px;
+  --shadow: 0 16px 40px rgba(18, 59, 53, .09);
+}
+body { background: #fbfdfc; }
+.site-header { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(14px); box-shadow: 0 1px 0 rgba(18,59,53,.04); }
+.header-inner { min-height: 76px; }
+.brand-mark { border-radius: 14px; background: linear-gradient(145deg, #167d68, #0b2b27); box-shadow: 0 7px 18px rgba(22,125,104,.22); }
+.brand strong { font-size: 17px; letter-spacing: -.5px; }
+.button { border-radius: 12px; min-height: 45px; }
+.button-primary { background: linear-gradient(135deg, #167d68, #105d50); box-shadow: 0 5px 14px rgba(22,125,104,.15); }
+.button-primary:hover { background: #0b4d42; }
+.button-outline { border-color: #c8ddd6; }
+.hero { min-height: 300px; margin-top: 24px; padding: 50px 58px; border: 1px solid #e0eee8; border-radius: 26px; background: radial-gradient(circle at 83% 20%, rgba(191,230,214,.65), transparent 32%), linear-gradient(115deg, #eff8f4 0%, #f8fbf9 62%, #e7f4ee 100%); }
+.eyebrow { color: #167d68; letter-spacing: 2.2px; }
+.hero h1 { font-size: clamp(30px, 4.2vw, 45px); letter-spacing: -2px; }
+.hero-description { color: #536d65; font-size: 14px; }
+.circle-one { background: #d0e9dd; }
+.circle-two { background: #a8d5c3; }
+.symbol-card { border-radius: 18px; box-shadow: 0 18px 38px rgba(18,59,53,.12); }
+.symbol-card span { background: #167d68; }
+.catalog-section { padding-top: 48px; }
+.section-heading h2 { font-size: 28px; letter-spacing: -1px; }
+.filter-panel { padding: 18px; border-color: #dfeae5; border-radius: 18px; background: #f7faf8; }
+.search-box { height: 54px; border-color: #d5e4dd; border-radius: 13px; box-shadow: 0 2px 7px rgba(18,59,53,.025); }
+.search-icon { color: #167d68; }
+.filter-row select { border-color: #d5e4dd; border-radius: 10px; }
+.product-grid { gap: 18px; }
+.product-card { border-color: #e0eae5; border-radius: 17px; box-shadow: 0 3px 12px rgba(18,59,53,.025); }
+.product-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(18,59,53,.1); }
+.product-image-wrap { background: linear-gradient(145deg, #f2f8f5, #f8fbf9); }
+.product-image { padding: 20px; }
+.category-pill { border-color: #dcebe4; border-radius: 999px; color: #176b5b; background: rgba(255,255,255,.95); font-weight: 700; }
+.product-body { padding: 16px; }
+.product-name { font-size: 14px; letter-spacing: -.25px; }
+.product-spec { color: #167d68; }
+.card-actions .button { border-radius: 9px; }
+.contact-section { border-radius: 22px; background: radial-gradient(circle at 80% 0%, rgba(53,143,119,.4), transparent 36%), linear-gradient(120deg, #123b35, #0b2b27); box-shadow: 0 16px 36px rgba(18,59,53,.14); }
+.contact-section .eyebrow { color: #a9e0cc; }
+.contact-section .button-light { border: 0; border-radius: 12px; }
+.site-footer { background: #f5f9f7; }
+.footer-inner strong { color: #123b35; }
+.product-dialog, .inquiry-dialog { border-radius: 22px; }
+.inquiry-icon { color: #167d68; background: #e4f4ef; border-radius: 15px; }
+@media (max-width: 700px) {
+  .header-inner { min-height: 68px; }
+  .hero { margin-top: 14px; padding: 30px 22px; border-radius: 20px; }
+  .hero h1 { font-size: 29px; letter-spacing: -1.2px; }
+  .catalog-section { padding-top: 34px; }
+  .section-heading h2 { font-size: 24px; }
+  .product-grid { gap: 10px; }
+  .product-card { border-radius: 13px; }
+  .product-image { padding: 10px; }
+  .product-body { padding: 11px; }
+  .contact-section { border-radius: 18px; }
+}
