@@ -1,132 +1,57 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#17345c">
-  <meta name="description" content="청소용품 제품 정보와 규격을 확인하고 가격을 문의할 수 있는 제품 카탈로그입니다.">
-  <title>청소용품 카탈로그</title>
-  <link rel="icon" href="images/placeholder.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/style.css">
-  <script src="assets/config.js" defer></script>
-  <script src="assets/app.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#176b50">
+<title>두두 클린 | 청소용품 카탈로그</title>
+<style>
+:root{--green:#176b50;--green2:#e9f5ef;--ink:#17231f;--muted:#687770;--line:#e2e9e5;--bg:#f6f8f6;--white:#fff;--radius:18px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;line-height:1.5}
+a{color:inherit}.wrap{width:min(1120px,100% - 32px);margin:auto}
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{display:flex;align-items:center;gap:10px;font-weight:850;font-size:19px;letter-spacing:-.5px}.logo{width:38px;height:38px;border-radius:12px;background:var(--green);color:#fff;display:grid;place-items:center;font-weight:900}.navtag{font-size:12px;color:var(--green);background:var(--green2);padding:7px 11px;border-radius:999px;font-weight:700}
+.hero{background:linear-gradient(120deg,#123f32,#176b50);color:#fff;padding:42px 0 34px;overflow:hidden}.hero-inner{display:grid;grid-template-columns:1.4fr .6fr;gap:24px;align-items:center}.eyebrow{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#b9e5d0;font-weight:800}.hero h1{font-size:clamp(28px,5vw,46px);line-height:1.18;letter-spacing:-1.6px;margin:12px 0}.hero p{color:#d8e9e1;margin:0;max-width:560px}.hero-art{justify-self:end;width:190px;height:160px;border-radius:28px;background:#ffffff12;border:1px solid #ffffff30;display:grid;place-items:center;font-size:72px}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.stat{border:1px solid #ffffff40;border-radius:12px;padding:9px 13px;font-size:13px;color:#e6f4ed}
+main{padding:28px 0 56px}.intro{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:18px}.intro h2{font-size:23px;letter-spacing:-.6px;margin:0}.intro p{margin:5px 0 0;color:var(--muted);font-size:14px}
+.tools{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px;display:grid;grid-template-columns:1fr 190px 150px;gap:10px;margin-bottom:18px}
+input,select{font:inherit;min-width:0;width:100%;background:#fbfcfb;border:1px solid var(--line);border-radius:12px;padding:12px 13px;color:var(--ink);outline:none}input:focus,select:focus{border-color:var(--green);box-shadow:0 0 0 3px #176b5018}
+.categories{display:flex;gap:8px;overflow:auto;padding:2px 0 16px}.chip{white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 13px;font-size:13px;color:#46554e;cursor:pointer}.chip.active{background:var(--green);border-color:var(--green);color:#fff}
+.resultline{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px;margin:4px 2px 12px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:transform .15s,border-color .15s;display:flex;flex-direction:column;min-width:0}.card:hover{transform:translateY(-2px);border-color:#b7d7c8}.product-art{height:148px;display:grid;place-items:center;background:linear-gradient(145deg,#f2f8f4,#e8f2ec);font-size:58px;position:relative}.product-art small{position:absolute;top:10px;left:10px;background:#fff;color:var(--green);padding:5px 8px;border-radius:999px;font-size:10px;font-weight:800}.card-body{padding:14px;display:flex;flex-direction:column;gap:7px;flex:1}.category{font-size:11px;font-weight:800;color:var(--green)}.card h3{font-size:15px;line-height:1.35;margin:0;letter-spacing:-.3px}.spec{font-size:12px;color:var(--muted);min-height:18px}.sku{font-size:11px;color:#89958f}.card-actions{display:flex;gap:7px;margin-top:7px}.btn{border:0;border-radius:10px;padding:10px 11px;font:inherit;font-size:12px;font-weight:750;cursor:pointer}.btn.primary{background:var(--green);color:#fff;flex:1}.btn.secondary{background:var(--green2);color:var(--green)}
+.empty{display:none;background:#fff;border:1px dashed #cbd9d1;border-radius:16px;padding:36px;text-align:center;color:var(--muted)}
+footer{background:#fff;border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-size:12px}.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.modal{position:fixed;inset:0;background:#0b2119a8;z-index:20;display:none;align-items:center;justify-content:center;padding:18px}.modal.show{display:flex}.dialog{background:#fff;border-radius:20px;width:min(520px,100%);max-height:90vh;overflow:auto;padding:22px;position:relative}.close{position:absolute;right:14px;top:12px;border:0;background:#f0f4f1;border-radius:50%;width:34px;height:34px;font-size:20px;cursor:pointer}.dialog h2{margin:8px 38px 6px 0;font-size:22px}.dialog p{color:var(--muted);font-size:14px}.detail-art{height:130px;background:var(--green2);border-radius:14px;display:grid;place-items:center;font-size:62px}.detail-list{padding-left:18px;color:#46554e;font-size:14px}.contact-options{display:grid;gap:9px;margin-top:16px}.contact-link{display:block;text-align:center;background:var(--green);color:white;text-decoration:none;padding:12px;border-radius:11px;font-weight:750}.contact-note{font-size:12px;color:var(--muted);margin-top:12px}
+@media(max-width:850px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.tools{grid-template-columns:1fr 1fr}.tools input{grid-column:1/-1}.hero-art{width:140px;height:140px;font-size:58px}}
+@media(max-width:600px){.wrap{width:min(100% - 24px,1120px)}.nav{height:60px}.hero{padding:30px 0}.hero-inner{grid-template-columns:1fr}.hero-art{display:none}.hero h1{font-size:32px}.intro{display:block}.tools{grid-template-columns:1fr 1fr;padding:10px}.tools input{grid-column:1/-1}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.product-art{height:118px;font-size:46px}.card-body{padding:11px}.card h3{font-size:14px}.card-actions{flex-direction:column}.btn{padding:9px}.stats{gap:7px}.stat{font-size:11px;padding:7px 9px}}
+</style>
 </head>
 <body>
-  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
-  <header class="site-header">
-    <div class="header-inner">
-      <a class="brand" href="./" aria-label="청소용품 카탈로그 홈">
-        <span class="brand-mark" aria-hidden="true">C</span>
-        <span>
-          <strong id="company-name">청소용품 카탈로그</strong>
-          <small id="company-tagline">업무에 필요한 청소용품을 한눈에</small>
-        </span>
-      </a>
-      <div class="header-contact">
-        <span class="header-note">제품 및 구매 문의</span>
-        <a id="header-contact-link" class="button button-small button-outline" href="#contact">문의 안내</a>
-      </div>
-    </div>
-  </header>
-
-  <main id="main">
-    <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">PRODUCT CATALOG</p>
-        <h1>필요한 청소용품을<br><span>빠르게 찾아보세요.</span></h1>
-        <p class="hero-description">제품명, 제품 코드, 규격으로 검색하고 상세 정보를 확인해 보세요. 가격과 구매 조건은 별도로 문의해 주세요.</p>
-      </div>
-      <div class="hero-symbol" aria-hidden="true">
-        <span class="symbol-circle circle-one"></span>
-        <span class="symbol-circle circle-two"></span>
-        <span class="symbol-card"><span>✓</span><i></i><i></i><i></i></span>
-      </div>
-    </section>
-
-    <section class="catalog-section" aria-labelledby="catalog-title">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">OUR PRODUCTS</p>
-          <h2 id="catalog-title">제품 카탈로그</h2>
-        </div>
-        <p class="results-summary" id="results-summary" aria-live="polite">제품 목록을 불러오는 중입니다.</p>
-      </div>
-
-      <div class="filter-panel">
-        <label class="search-box" for="search-input">
-          <span class="search-icon" aria-hidden="true">⌕</span>
-          <input id="search-input" type="search" placeholder="제품명, 코드, 브랜드, 규격 검색" autocomplete="off">
-          <kbd>검색</kbd>
-        </label>
-        <div class="filter-row">
-          <label class="category-select-label" for="category-select">카테고리</label>
-          <select id="category-select">
-            <option value="">전체 카테고리</option>
-          </select>
-          <label class="sort-label" for="sort-select">정렬</label>
-          <select id="sort-select">
-            <option value="name">제품명순</option>
-            <option value="code">제품 코드순</option>
-            <option value="category">카테고리순</option>
-          </select>
-          <button id="reset-button" class="text-button" type="button">초기화 ↺</button>
-        </div>
-      </div>
-
-      <div id="product-grid" class="product-grid" aria-live="polite" aria-busy="true"></div>
-      <div id="empty-state" class="empty-state" hidden>
-        <div class="empty-icon" aria-hidden="true">⌕</div>
-        <h3>검색 결과가 없습니다.</h3>
-        <p>검색어를 바꾸거나 카테고리 필터를 초기화해 보세요.</p>
-        <button id="empty-reset-button" class="button button-primary" type="button">전체 제품 보기</button>
-      </div>
-      <div class="pagination">
-        <button id="prev-button" class="button button-outline" type="button" disabled>← 이전</button>
-        <span id="page-indicator">1 / 1</span>
-        <button id="next-button" class="button button-outline" type="button" disabled>다음 →</button>
-      </div>
-    </section>
-
-    <section id="contact" class="contact-section">
-      <div>
-        <p class="eyebrow">NEED HELP?</p>
-        <h2>제품 가격과 구매 조건이 궁금하신가요?</h2>
-        <p>관심 있는 제품의 상세 정보에서 문의 버튼을 이용해 주세요. 담당자 연락처는 아래 설정 파일에서 등록할 수 있습니다.</p>
-      </div>
-      <a id="contact-main-link" class="button button-light" href="#contact">문의 안내</a>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <strong id="footer-company-name">청소용품 카탈로그</strong>
-      <p id="footer-contact-text">제품별 가격 및 구매 조건은 별도 문의 바랍니다.</p>
-      <small>본 카탈로그의 제품 정보는 참고용이며, 실제 규격과 공급 조건은 문의 시 확인해 주세요.</small>
-    </div>
-  </footer>
-
-  <dialog id="product-dialog" class="product-dialog" aria-labelledby="dialog-product-name">
-    <button id="dialog-close" class="dialog-close" type="button" aria-label="상세 정보 닫기">×</button>
-    <div id="dialog-content"></div>
-  </dialog>
-
-  <dialog id="inquiry-dialog" class="inquiry-dialog" aria-labelledby="inquiry-title">
-    <button id="inquiry-close" class="dialog-close" type="button" aria-label="문의 창 닫기">×</button>
-    <div class="inquiry-content">
-      <span class="inquiry-icon" aria-hidden="true">✉</span>
-      <p class="eyebrow">PRODUCT INQUIRY</p>
-      <h2 id="inquiry-title">제품 문의</h2>
-      <p id="inquiry-description"></p>
-      <div class="inquiry-product" id="inquiry-product"></div>
-      <div id="inquiry-actions" class="inquiry-actions"></div>
-      <p id="inquiry-fallback" class="form-note"></p>
-      <button id="copy-inquiry-button" class="button button-outline full-width" type="button">제품 문의 내용 복사</button>
-      <span id="copy-status" class="copy-status" aria-live="polite"></span>
-    </div>
-  </dialog>
-
-  <noscript>
-    <div class="noscript-message">이 카탈로그를 이용하려면 브라우저에서 JavaScript를 활성화해 주세요.</div>
-  </noscript>
-</body>
-</html>
+<header><div class="wrap nav"><div class="brand"><span class="logo">D</span><span>두두 클린 <span style="font-weight:500;color:#738078">| 제품 카탈로그</span></span></div><span class="navtag">B2B CLEANING SUPPLIES</span></div></header>
+<section class="hero"><div class="wrap hero-inner"><div><div class="eyebrow">CLEAN SPACE, BETTER DAY</div><h1>깨끗한 공간을 위한<br>믿을 수 있는 청소용품</h1><p>업무 환경과 사용 목적에 맞는 제품을 찾아보세요. 가격은 별도 안내하며, 제품 문의를 통해 편하게 상담하실 수 있습니다.</p><div class="stats"><span class="stat">✓ 제품별 상세 정보</span><span class="stat">✓ 간편한 제품 검색</span><span class="stat">✓ 견적·구매 문의</span></div></div><div class="hero-art">🧽</div></div></section>
+<main class="wrap"><div class="intro"><div><h2>제품 둘러보기</h2><p>필요한 제품을 검색하거나 카테고리별로 확인하세요.</p></div></div>
+<div class="tools"><input id="search" placeholder="제품명, 품번, 브랜드, 용도 검색" aria-label="제품 검색"><select id="category" aria-label="카테고리"><option value="">전체 카테고리</option></select><select id="sort" aria-label="정렬"><option value="name">제품명순</option><option value="category">카테고리순</option><option value="sku">품번순</option></select></div>
+<div class="categories" id="chips"></div><div class="resultline"><span id="count">제품 10개</span><span>가격 비공개 · 문의 환영</span></div><div class="grid" id="grid"></div><div class="empty" id="empty">검색 결과가 없습니다.<br>검색어를 바꾸거나 전체 카테고리를 선택해 주세요.</div></main>
+<footer><div class="wrap foot"><span>© 두두 클린 · 청소용품 제품 안내</span><span>가격 및 재고는 문의 시 안내드립니다.</span></div></footer>
+<div class="modal" id="modal" role="dialog" aria-modal="true"><div class="dialog"><button class="close" id="close" aria-label="닫기">×</button><div id="modalContent"></div></div></div>
+<script>
+const products=[
+{sku:"DD-001",name:"다목적 중성 세정제",cat:"세정제",brand:"두두 클린",spec:"1L · 일상 오염 세정",emoji:"🧴",desc:"사무실, 매장 등 다양한 공간의 일상 오염을 관리하기 위한 중성 세정제 샘플입니다.",use:"바닥·작업대·일반 표면"},
+{sku:"DD-002",name:"강력 기름때 세정제",cat:"세정제",brand:"두두 클린",spec:"1L · 주방 기름때",emoji:"🫧",desc:"주방 및 작업 공간의 기름때 관리를 위한 세정제 샘플입니다.",use:"주방·후드 주변·작업대"},
+{sku:"DD-003",name:"유리 전용 클리너",cat:"세정제",brand:"두두 클린",spec:"500mL · 유리 얼룩 관리",emoji:"✨",desc:"유리와 거울 표면의 얼룩 관리를 위한 클리너 샘플입니다.",use:"유리창·거울·쇼케이스"},
+{sku:"DD-004",name:"바닥 청소 밀대",cat:"청소도구",brand:"두두 클린",spec:"헤드 교체형 · 실내 바닥",emoji:"🧹",desc:"실내 바닥 청소를 위한 기본형 밀대 샘플입니다.",use:"사무실·매장·복도"},
+{sku:"DD-005",name:"극세사 걸레 세트",cat:"청소도구",brand:"두두 클린",spec:"5매 구성 · 다용도",emoji:"🧽",desc:"먼지와 가벼운 오염을 닦아내는 극세사 걸레 세트 샘플입니다.",use:"가구·책상·일반 표면"},
+{sku:"DD-006",name:"산업용 쓰레기봉투",cat:"위생용품",brand:"두두 클린",spec:"대형 · 50매 샘플",emoji:"🗑️",desc:"사업장 폐기물 정리용 대형 봉투 샘플입니다.",use:"사무실·매장·시설 관리"},
+{sku:"DD-007",name:"니트릴 작업 장갑",cat:"보호용품",brand:"두두 클린",spec:"일회용 · 다목적 작업",emoji:"🧤",desc:"청소 및 시설 관리 작업 시 사용하는 장갑 샘플입니다.",use:"청소 작업·시설 관리"},
+{sku:"DD-008",name:"손 세정제 디스펜서",cat:"위생용품",brand:"두두 클린",spec:"벽걸이형 · 리필 방식",emoji:"🧼",desc:"공용 공간의 손 위생 관리를 위한 디스펜서 샘플입니다.",use:"화장실·휴게실·출입구"},
+{sku:"DD-009",name:"스펀지 수세미",cat:"청소도구",brand:"두두 클린",spec:"다용도 · 10개 구성",emoji:"🧽",desc:"일상적인 세척 작업을 위한 스펀지 수세미 샘플입니다.",use:"싱크대·세척 공간"},
+{sku:"DD-010",name:"탈취·방향 관리제",cat:"위생용품",brand:"두두 클린",spec:"실내용 · 사용 전 라벨 확인",emoji:"🌿",desc:"실내 공간의 냄새 관리용 제품 샘플입니다. 실제 사용 전 제품 라벨과 사용 조건을 확인하세요.",use:"공용 공간·실내 시설"}
+];
+const $=id=>document.getElementById(id);let activeCat="";
+const cats=[...new Set(products.map(p=>p.cat))];
+cats.forEach(c=>{let o=document.createElement("option");o.value=c;o.textContent=c;$("category").append(o)});
+function renderChips(){ $("chips").innerHTML="";["전체",...cats].forEach(c=>{let b=document.createElement("button");b.className="chip"+((c==="전체"&&!activeCat)||c===activeCat?" active":"");b.textContent=c;b.onclick=()=>{activeCat=c==="전체"?"":c;$("category").value=activeCat;renderChips();render()};$("chips").append(b)})}
+function render(){let q=$("search").value.trim().toLowerCase(),cat=$("category").value,sort=$("sort").value;let list=products.filter(p=>(!cat||p.cat===cat)&&(!q||[p.sku,p.name,p.cat,p.brand,p.spec,p.use,p.desc].join(" ").toLowerCase().includes(q)));list.sort((a,b)=>String(a[sort]).localeCompare(String(b[sort]),"ko"));$("grid").innerHTML="";list.forEach(p=>{let el=document.createElement("article");el.className="card";el.innerHTML=`<div class="product-art"><small>${p.cat}</small>${p.emoji}</div><div class="card-body"><div class="category">${p.brand}</div><h3>${p.name}</h3><div class="spec">${p.spec}</div><div class="sku">품번 ${p.sku}</div><div class="card-actions"><button class="btn secondary" data-detail="${p.sku}">상세 보기</button><button class="btn primary" data-inquiry="${p.sku}">제품 문의</button></div></div>`;$("grid").append(el)});$("count").textContent=`검색 결과 ${list.length}개 / 전체 ${products.length}개`;$("empty").style.display=list.length?"none":"block"}
+function openModal(p,inquiry){$("modalContent").innerHTML=inquiry?`<div class="detail-art">${p.emoji}</div><h2>${p.name} 문의</h2><p>아래 예시 상품의 실제 가격·재고·규격은 판매처 확인 후 안내해 주세요.</p><ul class="detail-list"><li>품번: ${p.sku}</li><li>카테고리: ${p.cat}</li><li>규격: ${p.spec}</li></ul><div class="contact-options"><a class="contact-link" href="mailto:?subject=${encodeURIComponent("[제품 문의] "+p.name)}&body=${encodeURIComponent("제품명: "+p.name+"\\n품번: "+p.sku+"\\n문의 내용을 입력해 주세요.")}">이메일로 문의하기</a><button class="btn secondary" id="copyInquiry">문의 내용 복사하기</button></div><div class="contact-note">이메일 버튼은 기기의 기본 메일 앱을 엽니다. 회사 이메일은 실제 주소로 연결하도록 설정할 수 있습니다.</div>`:`<div class="detail-art">${p.emoji}</div><div class="category" style="margin-top:14px">${p.cat} · ${p.brand}</div><h2>${p.name}</h2><p>${p.desc}</p><ul class="detail-list"><li>품번: ${p.sku}</li><li>규격: ${p.spec}</li><li>추천 용도: ${p.use}</li></ul><p style="font-size:12px">※ 샘플 데이터입니다. 실제 판매 전 상품 정보와 안전 라벨을 확인해 주세요.</p><button class="btn primary" style="width:100%" id="detailInquiry">이 제품 문의하기</button>`;$("modal").classList.add("show");$("close").focus();let copy=$("copyInquiry");if(copy)copy.onclick=()=>{let t=`제품명: ${p.name}\n품번: ${p.sku}\n문의 내용: `;if(navigator.clipboard)navigator.clipboard.writeText(t).then(()=>copy.textContent="복사 완료!").catch(()=>prompt("아래 내용을 복사하세요",t));else prompt("아래 내용을 복사하세요",t)};let di=$("detailInquiry");if(di)di.onclick=()=>openModal(p,true)}
+$("grid").addEventListener("click",e=>{let d=e.target.closest("[data-detail]"),i=e.target.closest("[data-inquiry]");if(d||i){let sku=(d||i).dataset.detail||(d||i).dataset.inquiry;openModal(products.find(p=>p.sku===sku),!!i)}});$("close").onclick=()=>$("modal").classList.remove("show");$("modal").addEventListener("click",e=>{if(e.target===$("modal"))$("modal").classList.remove("show")});document.addEventListener("keydown",e=>{if(e.key==="Escape")$("modal").classList.remove("show")});$("search").addEventListener("input",render);$("category").addEventListener("change",()=>{activeCat=$("category").value;renderChips();render()});$("sort").addEventListener("change",render);renderChips();render();
+</script></body></html>
